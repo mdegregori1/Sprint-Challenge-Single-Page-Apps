@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
 import styled from "styled-components";
+import SearchForm from "./SearchForm";
 
 
 export default function CharacterList() {
@@ -32,33 +33,28 @@ export default function CharacterList() {
   if(characters === null ){
     return (
       <div>
-        <h1>Loading....</h1>
+        <h1>Loading up characters now...</h1>
       </div>
     )
   }
   return (
+    <div>
+        <Search>
+          <SearchForm handleInputChange={handleInputChange}/>
+        </Search>
     <Container className="character-list">
-        <form>
-        <input
-          type="text"
-          onChange={handleInputChange}
-          value={query}
-          name="name"
-          tabIndex="0"
-          placeholder="Search for Characters"
-        />
-        </form>
-    
-        {characters.map(e =>(
-          <CharacterCard
-          id={e.id}
-          name={e.name}
-          status={e.status}
-          species={e.species}
-          image={e.image}
-          />
-        ))}
+          {characters.map(e =>(
+            <CharacterCard
+            id={e.id}
+            name={e.name}
+            status={e.status}
+            species={e.species}
+            image={e.image}
+            />
+          ))}
     </Container>
+    </div>
+
   );
 }
 
@@ -66,8 +62,13 @@ export default function CharacterList() {
 
 const Container = styled.section`
 display: flex;
-flex-direction: column;
 flex-wrap: wrap;
 justify-content: center;
 align-items: center;
 `;
+
+const Search = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`
