@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export default function SearchForm(props) {
+  console.log('props passed', props)
  
   return (
     <section className="search-form">
@@ -9,7 +10,7 @@ export default function SearchForm(props) {
         <Input1
           type="text"
           onChange={props.handleInputChange}
-          value={props.query}
+          value={props.setQuery}
           name="name"
           tabIndex="0"
           placeholder="Search for Characters"
